@@ -1,0 +1,61 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+    ></script>
+    <title>Get all prodect</title>
+  </head>
+  <body>
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Index</th>
+          <th scope="col">Name</th>
+          <th scope="col">price</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i < prodects.length; i++ ) { %>
+        <tr>
+          <th scope="row"><%= i %></th>
+          <td><%= prodects[i].name %></td>
+          <td><%= prodects[i].price %></td>
+          <td>
+            <button
+              type="button"
+              onclick="Remove('<%=prodects[i]._id%>')"
+              class="btn btn-danger"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script>
+      function Remove(id) {
+        console.log(id);
+        axios
+          .get(`/api/v1/prodects`)
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+    </script>
+  </body>
+</html>

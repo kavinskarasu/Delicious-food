@@ -1,0 +1,41 @@
+const food = require("../model/prodectMode");
+const AppError = require("./../utils/appError");
+exports.getAllprodect = async (req, res, next) => {
+  try {
+    const foods = await food.find();
+    res.status(200).json({
+      status: "success",
+      data: {
+        foods,
+      },
+    });
+  } catch (err) {
+    next(new AppError(err, 404));
+  }
+};
+
+exports.postProdect = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    // if (req.user != "admin") {
+    //   next(new AppError("Only admin can access this page", 403));
+    // }
+    const newProdect = await food.create(req.body);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        newProdect,
+      },
+    });
+  } catch (err) {
+    next(new AppError(err, 403));
+  }
+};
+
+exports.deleteFood = async (req, res, next) => {
+  const f = await food.deleteOne({ _id: req.id });
+  next();
+
+  //res.redirect("/api/v1/views/getfood");
+};

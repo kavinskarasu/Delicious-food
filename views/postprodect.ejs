@@ -1,0 +1,100 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title>Admin prodect post</title>
+  </head>
+  <body>
+    <section class="vh-100" style="background-color: #2779e2;">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-9">
+            <h1 class="text-white mb-4">Add prodect</h1>
+            <form action="">
+              <div class="card form" style="border-radius: 15px;">
+                <div class="card-body">
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0 name">Prodect Name</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        type="text"
+                        class="form-control form-control-lg name"
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0 ">Price</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input
+                        type="text"
+                        class="form-control form-control-lg price"
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0 image">Image</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <textarea class="form-control image" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                      <h6 class="mb-0 description">Description</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <textarea
+                        class="form-control description"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <hr class="mx-n3" />
+
+                  <hr class="mx-n3" />
+
+                  <div class="px-5 py-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Post Item
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.querySelector(".name").value;
+        // const price = document.querySelector(".price").value;
+        const description = document.querySelector(".description").value;
+        const image = document.querySelector(".image").value;
+        console.log(name, description, image);
+        console.log("ki");
+      });
+    </script>
+    <script src="/public/js/prodectPost.js"></script>
+  </body>
+</html>
