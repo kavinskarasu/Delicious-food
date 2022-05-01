@@ -15,5 +15,5 @@ router.route("/postfood").get(viewController.postfood);
 router.route("/getfood").get(viewController.getAllfood);
 router.route("/getusers").get(viewController.getUsers);
 router.route("/viewCart").get(cartController.total, viewController.viewcart);
-
+router.route("/viewcancel").get(viewController.viewcancel);
 module.exports = router;

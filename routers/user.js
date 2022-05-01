@@ -3,6 +3,7 @@ const router = express.Router();
 const authController = require("../controller/authContoller");
 const cartController = require("../controller/cartController");
 const viewController = require("../controller/viewController");
+
 router.post("/signup", authController.signUp);
 router.post("/login", authController.login);
 router.get("/activateaccount/:token", authController.activateAccount);

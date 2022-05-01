@@ -86,6 +86,9 @@ exports.viewcart = async (req, res, next) => {
     total,
   });
 };
+exports.viewcancel = async (req, res, next) => {
+  res.status(200).render("cancel");
+};
 
 // exports.cart = (req, res, next) => {
 //   const cart = req.cart;

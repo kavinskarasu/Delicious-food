@@ -44,7 +44,7 @@ exports.cartItem = async (req, res, next) => {
     await User.save({ validateBeforeSave: false });
 
     const UserCart = User.cart;
-    console.log(User.cart.length);
+
     User.total = 0;
     for (let i = 0; i < UserCart.length; i++) {
       //console.log(UserCart[i].price);
@@ -97,7 +97,6 @@ exports.quanity = async (req, res, next) => {
     User.total = 0;
     for (let i = 0; i < UserCart.length; i++) {
       User.total = User.total + UserCart[i].price;
-      console.log(User.total);
     }
     await User.save({ validateBeforeSave: false });
     //console.log(User);
@@ -128,7 +127,6 @@ exports.removeItem = async (req, res, next) => {
   User.total = 0;
   for (let i = 0; i < UserCart.length; i++) {
     User.total = User.total + UserCart[i].price;
-    console.log(User.total);
   }
   await User.save({ validateBeforeSave: false });
   if (d) {
@@ -150,7 +148,6 @@ exports.total = async (req, res, next) => {
   User.total = 0;
   for (let i = 0; i < UserCart.length; i++) {
     User.total = User.total + UserCart[i].price;
-    console.log(User.total);
   }
   await User.save({ validateBeforeSave: false });
   next();

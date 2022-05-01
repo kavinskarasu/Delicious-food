@@ -41,6 +41,7 @@ const userSchema = new Mongoose.Schema({
       product: {
         type: Mongoose.Schema.ObjectId,
         unique: true,
+        ref: "food",
       },
       price: {
         type: Number,
@@ -52,7 +53,6 @@ const userSchema = new Mongoose.Schema({
       },
       name: {
         type: String,
-        //ref: "food",
       },
       image: {
         type: String,

@@ -9,6 +9,10 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script defer src="/js/index.mjs"></script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
@@ -120,7 +124,7 @@
             class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"
           >
             <button
-              class="btn btn-warning btn-block btn-lg ml-2 pay-button"
+              class="btn btn-warning btn-block btn-lg ml-2 pay-button  payment"
               type="button"
             >
               Proceed to Pay
@@ -129,6 +133,7 @@
         </div>
       </div>
     </div>
+
     <% } else{ %>
     <h1>No items in the cart</h1>
     <% } %>
@@ -145,6 +150,37 @@
           .catch(function(error) {
             console.log(error);
           });
+      }
+
+      var el = document.querySelector(".payment");
+
+      if (el) {
+        let session;
+        el.addEventListener("click", async function(e) {
+          el.style.background = "green";
+          el.textContent = "processing..";
+          const stripe = Stripe(
+            "pk_test_51KsUbhSDMTMOlquGb8WgWWymfSIvz8RYKktfyRIct2m6WgnQduk44xSiWLez0gOwRkypHNBXdg8SD3ZiiiJmRFWf00rHaqn1Nt"
+          );
+          await axios({
+            method: "GET",
+            url: "http://127.0.0.1:4000/api/v1/payment/checkout-sessin",
+          })
+            .then((data) => {
+              {
+                console.log(data.data.session);
+                session = data.data.session;
+              }
+            })
+            .catch((err) => {
+              //console.log(err);
+            });
+          await stripe.redirectToCheckout({
+            sessionId: session.id,
+          });
+
+          // 2) Create checkout form + chanre credit card
+        });
       }
     </script>
   </body>
