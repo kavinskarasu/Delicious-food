@@ -9,6 +9,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <script src="/js/prodectPost.js"></script>
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
@@ -46,14 +47,17 @@
     </table>
     <script>
       function Remove(id) {
-        console.log(id);
-        axios
-          .get(`/api/v1/prodects`)
-          .then(function(response) {
-            console.log(response);
+        let res = axios({
+          method: "DELETE",
+          url: `http://127.0.0.1:4000/api/v1/prodects/${id}`,
+        })
+          .then((data) => {
+            {
+              window.location.reload("/api/v1/views/getfood");
+            }
           })
-          .catch(function(error) {
-            console.log(error);
+          .catch((err) => {
+            console.log(err);
           });
       }
     </script>

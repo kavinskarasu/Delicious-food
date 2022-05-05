@@ -61,7 +61,7 @@ img {
 }
 
 img {
-  width: 100px;
+  max-width: 400px;
   height: 250px;
   margin: 0px;
 }

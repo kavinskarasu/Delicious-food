@@ -34,13 +34,9 @@ const userSchema = new Mongoose.Schema({
   },
   cart: [
     {
-      cartNumber: {
-        type: Number,
-        default: 1,
-      },
-      product: {
+      prodect: {
         type: Mongoose.Schema.ObjectId,
-        unique: true,
+        required: [true, "prodect must have a id"],
         ref: "food",
       },
       price: {

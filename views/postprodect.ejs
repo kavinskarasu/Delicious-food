@@ -9,6 +9,12 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
+    ></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>Admin prodect post</title>
   </head>
   <body>
@@ -27,7 +33,7 @@
                     <div class="col-md-9 pe-5">
                       <input
                         type="text"
-                        class="form-control form-control-lg name"
+                        class="form-control form-control-lg name-1"
                       />
                     </div>
                   </div>
@@ -41,7 +47,7 @@
                     <div class="col-md-9 pe-5">
                       <input
                         type="text"
-                        class="form-control form-control-lg price"
+                        class="form-control form-control-lg price-1"
                       />
                     </div>
                   </div>
@@ -53,7 +59,10 @@
                       <h6 class="mb-0 image">Image</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <textarea class="form-control image" rows="3"></textarea>
+                      <textarea
+                        class="form-control image-1"
+                        rows="3"
+                      ></textarea>
                     </div>
                   </div>
                   <div class="row align-items-center py-3">
@@ -61,10 +70,7 @@
                       <h6 class="mb-0 description">Description</h6>
                     </div>
                     <div class="col-md-9 pe-5">
-                      <textarea
-                        class="form-control description"
-                        rows="3"
-                      ></textarea>
+                      <textarea class="form-control des" rows="3"></textarea>
                     </div>
                   </div>
 
@@ -84,17 +90,7 @@
         </div>
       </div>
     </section>
-    <script>
-      document.querySelector("form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const name = document.querySelector(".name").value;
-        // const price = document.querySelector(".price").value;
-        const description = document.querySelector(".description").value;
-        const image = document.querySelector(".image").value;
-        console.log(name, description, image);
-        console.log("ki");
-      });
-    </script>
-    <script src="/public/js/prodectPost.js"></script>
+
+    <script src="/js/prodectPost.js"></script>
   </body>
 </html>

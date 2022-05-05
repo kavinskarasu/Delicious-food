@@ -4,6 +4,14 @@ const prodectController = require("../controller/prodects");
 const authController = require("../controller/authContoller");
 
 router
+  .route("/:id")
+  .delete(
+    authController.prodect,
+    authController.restrictTo("admin"),
+    prodectController.deleteFood
+  );
+
+router
   .route("/")
   .get(authController.prodect, prodectController.getAllprodect)
   .post(

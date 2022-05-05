@@ -19,13 +19,13 @@ const post = (name, price, image, description) => {
     });
 };
 
-document.querySelector("form").addEventListener("click", function(e) {
+document.querySelector("form").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const name = document.querySelector(".name").value;
-  const price = document.querySelector(".price").value;
-  const image = document.querySelector(".image").value;
-  const description = document.querySelector(".description").value;
+  const name = document.querySelector(".name-1").value;
+  const price = document.querySelector(".price-1").value;
+  const description = document.querySelector(".des").value;
+  const image = document.querySelector(".image-1").value;
 
   post(name, price, image, description);
 });

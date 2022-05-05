@@ -34,8 +34,8 @@ exports.postProdect = async (req, res, next) => {
 };
 
 exports.deleteFood = async (req, res, next) => {
-  const f = await food.deleteOne({ _id: req.id });
-  next();
-
-  //res.redirect("/api/v1/views/getfood");
+  const deletedFood = await food.findOneAndRemove(req.params.id);
+  res.status(200).json({
+    status: "success",
+  });
 };

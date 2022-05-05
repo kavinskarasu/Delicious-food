@@ -2,7 +2,7 @@ const prodect = require("../model/prodectMode");
 const user = require("../model/userModel");
 const AppError = require("../utils/appError");
 const authContoller = require("../controller/authContoller");
-
+const orderfood = require("../model/order");
 const crypto = require("crypto");
 
 exports.overview = async (req, res) => {
@@ -86,11 +86,23 @@ exports.viewcart = async (req, res, next) => {
     total,
   });
 };
-exports.viewcancel = async (req, res, next) => {
-  res.status(200).render("cancel");
+exports.ordersConfirmed = async (req, res, next) => {
+  const ordered = await orderfood.find();
+  res.status(200).json({
+    status: "success",
+    data: {
+      ordered,
+    },
+  });
 };
 
-// exports.cart = (req, res, next) => {
-//   const cart = req.cart;
-//   res.status(200).render("");
-// };
+exports.ordersbyUser = async (req, res, next) => {
+  const UserId = req.user._id;
+  const orders = await orderfood.findOne({ User: UserId });
+  const cart = orders.orders;
+  const total = orders.total;
+  res.status(200).render("orders", {
+    cart,
+    total,
+  });
+};

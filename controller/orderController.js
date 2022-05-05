@@ -3,6 +3,8 @@ const prodects = require("../model/prodectMode");
 var axios = require("axios");
 const mongoose = require("mongoose");
 
+const orderfood = require("../model/order");
+
 const stripe = require("stripe")(
   "sk_test_51KsUbhSDMTMOlquGG6QmzxU897WGdIWNrlFyfpb5NBM8qY0eBcpxV7hjc6HcSzo7iF7oDe9ws06GFSdXMbQSoC9800nJBv6JWR"
 );
@@ -27,17 +29,21 @@ exports.checkoutOrder = async (req, res, next) => {
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    success_url: `${req.protocol}://${req.get("host")}/api/v1/views/overview`,
+    success_url: `${req.protocol}://${req.get(
+      "host"
+    )}/api/v1/views/overview?User=${User._id}&cart=${User.cart}&total=${
+      User.total
+    }`,
 
     cancel_url: `${req.protocol}://${req.get("host")}/api/v1/views/overview`,
     customer_email: req.user.email,
     client_reference_id: `User` + User._id,
     line_items: a,
   });
-  const d = await user.updateOne(
-    { _id: mongoose.Types.ObjectId(req.user._id) },
-    { $set: { cart: [] } }
-  );
+  // const d = await user.updateOne(
+  //   { _id: mongoose.Types.ObjectId(req.user._id) },
+  //   { $set: { cart: [] } }
+  // );
   res.status(200).json({
     status: "success",
 
@@ -82,4 +88,54 @@ exports.payment = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+exports.orderfood = async (req, res, next) => {
+  try {
+    const { User, cart, total } = req.query;
+    const orderUser = await user.findById(User);
+    if (!User && !cart && !total) {
+      return next();
+    }
+    const oldCart = orderUser.cart;
+    //console.log(orderUser.cart);
+    await user.updateOne(
+      { _id: mongoose.Types.ObjectId(User) },
+      { $set: { cart: [] } }
+    );
+    // console.log(User, orderUser, total);
+    const a = await orderfood.create({
+      User,
+      orders: oldCart,
+      total,
+    });
+    console.log(a);
+    res.redirect(req.originalUrl.split("?")[0]);
+    // console.log(newOrder);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+exports.ordersConfirmed = async (req, res, next) => {
+  const ordered = await orderfood.find();
+  res.status(200).json({
+    status: "success",
+    data: {
+      ordered,
+    },
+  });
+};
+
+exports.ordersbyUser = async (req, res, next) => {
+  const UserId = req.user._id;
+  const orders = await orderfood.find({ User: UserId });
+  console.log(orders);
+  console.log(orders.total);
+  res.status(200).json({
+    status: "success",
+    data: {
+      orders,
+    },
+  });
 };
