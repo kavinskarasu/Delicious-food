@@ -141,7 +141,7 @@ exports.activateAccount = async (req, res, next) => {
   }
 };
 
-exports.prodect = async (req, res, next) => {
+exports.protect = async (req, res, next) => {
   try {
     let token;
     if (
