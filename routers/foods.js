@@ -6,16 +6,16 @@ const authController = require("../controller/authContoller");
 router
   .route("/:id")
   .delete(
-    authController.prodect,
+    authController.protect,
     authController.restrictTo("admin"),
     prodectController.deleteFood
   );
 
 router
   .route("/")
-  .get(authController.prodect, prodectController.getAllprodect)
+  .get(authController.protect, prodectController.getAllprodect)
   .post(
-    authController.prodect,
+    authController.protect,
     authController.restrictTo("admin"),
     prodectController.postProdect
   );

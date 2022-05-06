@@ -1,5 +1,5 @@
 const user = require("../model/userModel");
-const prodects = require("../model/prodectMode");
+const prodects = require("../model/productMode");
 var axios = require("axios");
 const mongoose = require("mongoose");
 

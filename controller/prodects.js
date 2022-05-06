@@ -1,4 +1,4 @@
-const food = require("../model/prodectMode");
+const food = require("../model/productMode");
 const AppError = require("./../utils/appError");
 exports.getAllprodect = async (req, res, next) => {
   try {

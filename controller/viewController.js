@@ -1,4 +1,4 @@
-const prodect = require("../model/prodectMode");
+const prodect = require("../model/productMode");
 const user = require("../model/userModel");
 const AppError = require("../utils/appError");
 const authContoller = require("../controller/authContoller");

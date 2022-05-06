@@ -7,17 +7,17 @@ const orderController = require("../controller/orderController");
 
 router
   .route("/checkout-sessin/")
-  .get(authController.prodect, orderController.checkoutOrder);
+  .get(authController.protect, orderController.checkoutOrder);
 router.route("/order").get(orderController.payment);
 router
   .route("/orders")
   .get(
-    authController.prodect,
+    authController.protect,
     authController.restrictTo("admin"),
     orderController.ordersConfirmed
   );
 router.route("/ordersByUser").get(
-  authController.prodect,
+  authController.protect,
 
   orderController.ordersbyUser
 );

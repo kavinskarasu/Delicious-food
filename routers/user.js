@@ -9,16 +9,16 @@ router.post("/login", authController.login);
 router.get("/activateaccount/:token", authController.activateAccount);
 router.patch(
   "/cart/:id/:quanity",
-  authController.prodect,
+  authController.protect,
   cartController.cartItem
 );
 router.patch(
   "/cartQuanity/:id/:quanity",
-  authController.prodect,
+  authController.protect,
   cartController.quanity
 );
 
-router.delete("/:id", authController.prodect, cartController.removeItem);
+router.delete("/:id", authController.protect, cartController.removeItem);
 router.post("/adminlogin", authController.adminlogin);
 router.get("/logout", authController.logout);
 module.exports = router;

@@ -2,7 +2,7 @@ const { json } = require("express");
 const user = require("../model/userModel");
 let mongoose = require("mongoose");
 const { postProdect } = require("./prodects");
-const foods = require("../model/prodectMode");
+const foods = require("../model/productMode");
 
 exports.cartItem = async (req, res, next) => {
   try {

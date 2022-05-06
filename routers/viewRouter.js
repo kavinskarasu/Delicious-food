@@ -22,5 +22,5 @@ router.route("/viewCart").get(cartController.total, viewController.viewcart);
 router.route("/adminorders").get(viewController.ordersConfirmed);
 router
   .route("/ordersByUser")
-  .get(authContoller.prodect, viewController.ordersbyUser);
+  .get(authContoller.protect, viewController.ordersbyUser);
 module.exports = router;

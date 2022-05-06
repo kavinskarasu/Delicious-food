@@ -3,7 +3,7 @@ const secure = require("bcryptjs");
 const crypto = require("crypto");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
-const prodect = require("../model/prodectMode");
+const prodect = require("../model/productMode");
 
 const userSchema = new Mongoose.Schema({
   name: {
