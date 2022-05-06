@@ -53,7 +53,7 @@ exports.signUp = async (req, res, next) => {
     )}/api/v1/views/activate/${activateToken}`;
     const message = `please activate your account: ${activateAccount}.\n, please ignore this email! if it is not you`;
     const url = activateAccount;
-    console.log(url);
+
     new Email(newUser, url).sendWelcome();
 
     try {
@@ -177,24 +177,29 @@ exports.prodect = async (req, res, next) => {
   }
 };
 exports.isLoggedin = async (req, res, next) => {
-  if (req.cookies.jwt) {
-    const decoded = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT
-    );
+  try {
+    if (req.cookies.jwt) {
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT
+      );
 
-    const currentUser = await user.findById(decoded.id);
+      const currentUser = await user.findById(decoded.id);
 
-    if (!currentUser) {
+      console.log(currentUser);
+      if (!currentUser) {
+        return next();
+      }
+      req.user = currentUser.name;
+      req.id = currentUser._id;
+
       return next();
     }
-    req.user = currentUser.name;
-    req.id = currentUser._id;
 
-    return next();
+    next();
+  } catch (err) {
+    next();
   }
-
-  next();
 };
 
 exports.restrictTo = (role) => {
@@ -243,4 +248,12 @@ exports.adminlogin = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err.message, 403));
   }
+};
+
+exports.logout = (req, res) => {
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: "success" });
 };

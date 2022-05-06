@@ -62,7 +62,7 @@
         font-size: 11px;
       }
     </style>
-    <title>Document</title>
+    <title>Shopping Cart</title>
   </head>
   <body>
     <div class="container mt-5 mb-5">
@@ -164,11 +164,10 @@
           );
           await axios({
             method: "GET",
-            url: "http://127.0.0.1:4000/api/v1/payment/checkout-sessin",
+            url: "/api/v1/payment/checkout-sessin",
           })
             .then((data) => {
               {
-                console.log(data.data.session);
                 session = data.data.session;
               }
             })

@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Delicious Food</title>
     <link rel="stylesheet" href="/index.css" />
     <script src="/js/bundle.js"></script> 
     <style>
@@ -116,14 +116,14 @@
                
                 <a class="nav-link" href="">
                   
-                  <svg  onclick=Cart() xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill cart" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill cart" viewBox="0 0 16 16">
+                    <path  class="order"d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                   </svg>
                  
                 </a>
               </li>
               <li class="nav-item text-center mx-2 mx-lg-1">
-                <a class="nav-link" href="#!">
+                <a class="nav-link logout" href="#!">
                   <div></div>
                   <button>logout</button>
                 </a>
@@ -217,7 +217,7 @@ function plus(id){
    
    )
    .then(function (response) {
-     console.log();
+
    })
    .catch(function (error) {
      console.log(error);
@@ -260,8 +260,34 @@ axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}
 
       
        }
+       document.querySelector('.order').addEventListener('click',function(e){
+         e.preventDefault()
+       
+         location.assign("/api/v1/views/ordersByUser");
+       })
+
+       document.querySelector('.logout').addEventListener('click',function(){
+       
+        axios.get('/api/v1/users/logout')
+  .then(function (response) {
+    // handle success
+    if(response.data.status="success"){
+      location.reload(true)
+    }
+  })
+  .catch(function (error) {
+    // handle error
+    if(response.data.status="failure"){
+      location.reload(true)
+    }
+   
+  })
+  .then(function () {
+    // always executed
+  });
+       })
 
     </script>
-    <!-- <script src="/js/bundle.js"></script> -->
+  
   </body>
 </html>

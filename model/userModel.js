@@ -75,7 +75,7 @@ userSchema.pre("save", async function(next) {
     return next();
   }
   this.password = await secure.hash(this.password, 12);
-  console.log(this.password);
+
   next();
 });
 userSchema.methods.createPasswordResetToken = function() {

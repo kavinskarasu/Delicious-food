@@ -70,21 +70,15 @@
         <div class="col-md-8">
           <div class="p-2">
            
+         
           
 
           <% if(cart.length>0){ %> <% for (var i =0; i < cart.length; i++ ) { %>
             
-            <div
-            class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"
-          >
-            <input
-              type="text"
-              class="form-control border-0 gift-card"
-              placeholder="order "
-            /><button class="btn btn-primary btn-sm ml-2" type="button">
-              <%= i+1 %>
-            </button>
-          </div>
+            <h4>orders by <br> <%=cart[i].User.name %></h4>
+              
+           
+            
             <% for(var j = 0; j < cart[i].orders.length; j++) {%>
              
           <div

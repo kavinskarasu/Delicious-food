@@ -16,7 +16,6 @@ exports.getAllprodect = async (req, res, next) => {
 
 exports.postProdect = async (req, res, next) => {
   try {
-    console.log(req.body);
     // if (req.user != "admin") {
     //   next(new AppError("Only admin can access this page", 403));
     // }

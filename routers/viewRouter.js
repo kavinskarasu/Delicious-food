@@ -4,6 +4,7 @@ const viewController = require("../controller/viewController");
 const authContoller = require("../controller/authContoller");
 const cartController = require("../controller/cartController");
 const orderController = require("../controller/orderController");
+const adminContoller = require("../controller/authContoller");
 router.use(authContoller.isLoggedin);
 router.route("/adminlogin").get(viewController.adminLoginForm);
 router.route("/userlogin").get(viewController.userLoginForm);

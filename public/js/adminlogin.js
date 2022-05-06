@@ -1,7 +1,7 @@
 const login = async (email, password) => {
   let res = axios({
     method: "POST",
-    url: "http://127.0.0.1:4000/api/v1/users/adminlogin",
+    url: "/api/v1/users/adminlogin",
     data: {
       email,
       password,
@@ -30,6 +30,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
   e.preventDefault();
   let email = document.getElementById("floatingInput").value;
   let password = document.getElementById("floatingPassword").value;
-  console.log(email, password);
+
   login(email, password);
 });

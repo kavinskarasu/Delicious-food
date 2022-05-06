@@ -20,18 +20,6 @@ router
     prodectController.postProdect
   );
 
-// router
-//   .route("/prodects")
-//   .get(
-//     authController.prodect,
-//     authController.restrictTo("admin"),
-//     prodectController.deleteFood
-//   );
-
-// router.delete("/prd/:id", (req, res) => {
-
-// })
-
 router.route("/adminlogin").post(authController.login);
 
 module.exports = router;

@@ -68,18 +68,15 @@ exports.payment = async (req, res, next) => {
 
     let session = await axios({
       method: "GET",
-      url: "http://127.0.0.1:4000/api/v1/payment/checkout-sessin",
+      url: "/api/v1/payment/checkout-sessin",
     })
       .then((data) => {
         {
-          console.log(data);
         }
       })
       .catch((err) => {
         //console.log(err);
       });
-
-    console.log(session);
 
     // // 2) Create checkout form + chanre credit card
     // await stripe.redirectToCheckout({
@@ -109,7 +106,7 @@ exports.orderfood = async (req, res, next) => {
       orders: oldCart,
       total,
     });
-    console.log(a);
+
     res.redirect(req.originalUrl.split("?")[0]);
     // console.log(newOrder);
   } catch (err) {
@@ -129,13 +126,13 @@ exports.ordersConfirmed = async (req, res, next) => {
 
 exports.ordersbyUser = async (req, res, next) => {
   const UserId = req.user._id;
-  const orders = await orderfood.find({ User: UserId });
-  console.log(orders);
-  console.log(orders.total);
+  const cart = await orderfood.find({ User: UserId });
+
+  console.log(cart[0].User.cart);
   res.status(200).json({
     status: "success",
     data: {
-      orders,
+      cart,
     },
   });
 };

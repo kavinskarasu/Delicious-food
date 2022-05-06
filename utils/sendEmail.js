@@ -10,17 +10,13 @@ module.exports = class Email {
   }
 
   newTransport() {
-    if (process.env.NODE_ENV == "prodection") {
-    } else {
-      return nodemailer.createTransport({
-        host: process.env.email,
-        port: process.env.port,
-        auth: {
-          user: process.env.username,
-          pass: process.env.password,
-        },
-      });
-    }
+    return nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "kaviarasu.ct20@bitsathy.ac.in",
+        pass: "hackerearth@12345",
+      },
+    });
   }
   async send(templete, subject) {
     const html = await ejs.renderFile(

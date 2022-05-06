@@ -14,7 +14,7 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
     ></script>
-    <title>Get all prodect</title>
+    <title>Get all product</title>
   </head>
   <body>
     <table class="table table-striped table-dark">
@@ -49,7 +49,7 @@
       function Remove(id) {
         let res = axios({
           method: "DELETE",
-          url: `http://127.0.0.1:4000/api/v1/prodects/${id}`,
+          url: `/api/v1/prodects/${id}`,
         })
           .then((data) => {
             {

@@ -4,12 +4,13 @@ const ejs = require("ejs");
 
 const cookieParser = require("cookie-parser");
 const app = express();
-
+const compression = require("compression");
 const foodRouter = require("./routers/foods");
 const userRouter = require("./routers/user");
 const viewRouter = require("./routers/viewRouter");
 const orderRouter = require("./routers/orderRouter");
 app.use(express.json());
+app.use(compression());
 app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));

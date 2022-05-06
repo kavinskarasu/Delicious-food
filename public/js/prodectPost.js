@@ -1,7 +1,7 @@
 const post = (name, price, image, description) => {
   let res = axios({
     method: "POST",
-    url: "http://127.0.0.1:4000/api/v1/prodects/",
+    url: "/api/v1/prodects/",
     data: {
       name,
       price,

@@ -20,4 +20,5 @@ router.patch(
 
 router.delete("/:id", authController.prodect, cartController.removeItem);
 router.post("/adminlogin", authController.adminlogin);
+router.get("/logout", authController.logout);
 module.exports = router;

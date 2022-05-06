@@ -87,22 +87,18 @@ exports.viewcart = async (req, res, next) => {
   });
 };
 exports.ordersConfirmed = async (req, res, next) => {
-  const ordered = await orderfood.find();
-  res.status(200).json({
-    status: "success",
-    data: {
-      ordered,
-    },
+  const cart = await orderfood.find();
+  console.log(cart);
+  res.status(200).render("adminOrder", {
+    cart,
   });
 };
 
 exports.ordersbyUser = async (req, res, next) => {
   const UserId = req.user._id;
-  const orders = await orderfood.findOne({ User: UserId });
-  const cart = orders.orders;
-  const total = orders.total;
+  const cart = await orderfood.find({ User: UserId });
+
   res.status(200).render("orders", {
     cart,
-    total,
   });
 };
