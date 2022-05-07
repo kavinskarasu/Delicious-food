@@ -144,7 +144,7 @@
           .delete(`/api/v1/users/${id}`)
           .then(function(response) {
             if (response.data == "Done") {
-              window.location.reload("/api/v1/views/viewcart");
+              window.location.reload("/viewcart");
             }
           })
           .catch(function(error) {

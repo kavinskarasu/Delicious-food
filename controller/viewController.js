@@ -41,7 +41,7 @@ exports.acctivated = async (req, res, next) => {
   User.activateToken = undefined;
   User.activateExpires = undefined;
   await User.save();
-  const login = `${req.protocol}://${req.get("host")}/api/v1/views/userlogin`;
+  const login = `${req.protocol}://${req.get("host")}/userlogin`;
   const loginUser = User.name;
   res.status(200).render("acctivated", {
     login,

@@ -29,13 +29,11 @@ exports.checkoutOrder = async (req, res, next) => {
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    success_url: `${req.protocol}://${req.get(
-      "host"
-    )}/api/v1/views/overview?User=${User._id}&cart=${User.cart}&total=${
-      User.total
-    }`,
+    success_url: `${req.protocol}://${req.get("host")}/?User=${User._id}&cart=${
+      User.cart
+    }&total=${User.total}`,
 
-    cancel_url: `${req.protocol}://${req.get("host")}/api/v1/views/overview`,
+    cancel_url: `${req.protocol}://${req.get("host")}/`,
     customer_email: req.user.email,
     client_reference_id: `User` + User._id,
     line_items: a,

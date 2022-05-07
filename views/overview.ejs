@@ -136,13 +136,13 @@
                
                 <a class="nav-link" href="#!">
                   
-                 <a href="/api/v1/views/signup"><button>Signup</button></a> 
+                 <a href="/signup"><button>Signup</button></a> 
                 </a>
               </li>
               <li class="nav-item text-center mx-2 mx-lg-1">
                 <a class="nav-link" href="#!">
                   <div></div>
-                  <a href="/api/v1/views/userlogin"><button>Login</button></a> 
+                  <a href="/userlogin"><button>Login</button></a> 
                   
                 </a>
               </li>
@@ -153,7 +153,7 @@
 
           <!-- Search form -->
           <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-            <a href="/api/v1/views/viewCart">
+            <a href="/viewCart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -263,12 +263,12 @@ axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}
        document.querySelector('.order').addEventListener('click',function(e){
          e.preventDefault()
        
-         location.assign("/api/v1/views/ordersByUser");
+         location.assign("/ordersByUser");
        })
 
        document.querySelector('.logout').addEventListener('click',function(){
        
-        axios.get('/api/v1/users/logout')
+        axios.get('/logout')
   .then(function (response) {
     // handle success
     if(response.data.status="success"){

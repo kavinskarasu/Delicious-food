@@ -11,7 +11,7 @@ const login = async (email, password) => {
       {
         alert("logged in successfully");
         window.setTimeout(() => {
-          location.assign("/api/v1/views/overview");
+          location.assign("/");
         }, 1500);
       }
     })

@@ -11,7 +11,7 @@ const signup = (name, email, password) => {
     .then((data) => {
       {
         window.setTimeout(() => {
-          location.assign("/api/v1/views/notify");
+          location.assign("/notify");
         }, 1000);
       }
     })

@@ -50,7 +50,7 @@ exports.signUp = async (req, res, next) => {
     //const token = createToken(newUser._id);
     const activateAccount = `${req.protocol}://${req.get(
       "host"
-    )}/api/v1/views/activate/${activateToken}`;
+    )}/activate/${activateToken}`;
     const message = `please activate your account: ${activateAccount}.\n, please ignore this email! if it is not you`;
     const url = activateAccount;
 
