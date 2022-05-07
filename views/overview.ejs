@@ -285,7 +285,7 @@ axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}
       
        document.querySelector('.logout').addEventListener('click',function(){
        
-        axios.get('/logout')
+        axios.get('api/v1/users/logout')
   .then(function (response) {
     // handle success
     if(response.data.status="success"){
