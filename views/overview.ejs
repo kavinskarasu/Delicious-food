@@ -211,8 +211,10 @@
 
 
 function plus(id){
- 
-     
+      if(!user){
+        alert("please login");
+      }
+     else{
         if(parseInt(document.querySelector(`#i${id}`).value)<=10){
         document.querySelector(`#i${id}`).value=parseInt(document.querySelector(`#i${id}`).value)+1;}
         axios.patch(`/api/v1/users/cartQuanity/${id}/${parseInt(document.querySelector(`#i${id}`).value)}`, 
@@ -226,10 +228,17 @@ function plus(id){
    });
        
      }
+    }
 
 
 function minus(id){
 
+  if(!user){
+    alert("please login");
+  }
+  else{
+
+  
         if(parseInt(document.querySelector(`#i${id}`).value)>1){
         document.querySelector(`#i${id}`).value=parseInt(document.querySelector(`#i${id}`).value)-1;}
         axios.patch(`/api/v1/users/cartQuanity/${id}/${parseInt(document.querySelector(`#i${id}`).value)}`, 
@@ -242,19 +251,22 @@ function minus(id){
      console.log(error);
    });
      }
-     
+    }
 
     
 
 
        function AddToCart(id){
-
-           
+if(!user)[
+  alert("please login")
+]
+         else{
         if(parseInt(document.querySelector(`#i${id}`).value)==0){
 document.querySelector(`#i${id}`).value=parseInt(document.querySelector(`#i${id}`).value)+1;}
 axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}`).value)}`, 
    
    )
+        }
 
         
 
@@ -262,12 +274,16 @@ axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}
 
       
        }
+       if(!user){
+         alert("please login")
+       }
+       else{
        document.querySelector('.order').addEventListener('click',function(e){
          e.preventDefault()
        
          location.assign("/ordersByUser");
        })
-
+      }
        document.querySelector('.logout').addEventListener('click',function(){
        
         axios.get('/logout')
