@@ -15,8 +15,9 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
+app.use("/", viewRouter);
 app.use("/api/v1/prodects", foodRouter);
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/views", viewRouter);
+
 app.use("/api/v1/payment", orderRouter);
 module.exports = app;

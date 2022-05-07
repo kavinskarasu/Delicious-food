@@ -6,12 +6,11 @@ const cartController = require("../controller/cartController");
 const orderController = require("../controller/orderController");
 const adminContoller = require("../controller/authContoller");
 router.use(authContoller.isLoggedin);
+router.route("/").get(orderController.orderfood, viewController.overview);
 router.route("/adminlogin").get(viewController.adminLoginForm);
 router.route("/userlogin").get(viewController.userLoginForm);
 router.route("/signup").get(viewController.userSignupForm);
-router
-  .route("/overview")
-  .get(orderController.orderfood, viewController.overview);
+
 router.route("/activate/:token").get(viewController.acctivated);
 router.route("/notify").get(viewController.notify);
 router.route("/adminOverview").get(viewController.AdminOverview);
