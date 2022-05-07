@@ -113,7 +113,7 @@ exports.quanity = async (req, res, next) => {
 
 exports.removeItem = async (req, res, next) => {
   const User = req.user;
-  console.log(req.params.id);
+
   const prodect = await foods.findById(req.params.id);
 
   const d = await user.updateOne(

@@ -126,7 +126,6 @@ exports.ordersbyUser = async (req, res, next) => {
   const UserId = req.user._id;
   const cart = await orderfood.find({ User: UserId });
 
-  console.log(cart[0].User.cart);
   res.status(200).json({
     status: "success",
     data: {

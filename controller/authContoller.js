@@ -111,7 +111,7 @@ exports.login = async (req, res, next) => {
     if (loginUser.active == "false") {
       return next(new AppError("please acivate your account", 401));
     }
-    console.log(loginUser.cart.length);
+
     createSendToken(loginUser._id, 200, res);
   } catch (err) {
     return next(new AppError(err.message, 403));
@@ -186,7 +186,6 @@ exports.isLoggedin = async (req, res, next) => {
 
       const currentUser = await user.findById(decoded.id);
 
-      console.log(currentUser);
       if (!currentUser) {
         return next();
       }

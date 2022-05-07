@@ -88,7 +88,7 @@ exports.viewcart = async (req, res, next) => {
 };
 exports.ordersConfirmed = async (req, res, next) => {
   const cart = await orderfood.find();
-  console.log(cart);
+
   res.status(200).render("adminOrder", {
     cart,
   });
