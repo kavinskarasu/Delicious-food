@@ -10,6 +10,7 @@ const userRouter = require("./routers/user");
 const viewRouter = require("./routers/viewRouter");
 const orderRouter = require("./routers/orderRouter");
 app.use(express.json());
+app.enable("trust proxy");
 app.use(compression());
 app.use(cookieParser());
 app.set("view engine", "ejs");

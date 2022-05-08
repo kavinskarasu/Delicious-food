@@ -19,8 +19,9 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   };
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+  // if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
@@ -112,7 +113,7 @@ exports.login = async (req, res, next) => {
       return next(new AppError("please acivate your account", 401));
     }
 
-    createSendToken(loginUser._id, 200, res);
+    createSendToken(loginUser._id, req, 200, res);
   } catch (err) {
     return next(new AppError(err.message, 403));
   }
@@ -243,7 +244,7 @@ exports.adminlogin = async (req, res, next) => {
     if (loginUser.role != "admin") {
       return next(new AppError("Only admin can access this page", 403));
     }
-    createSendToken(loginUser._id, 200, res);
+    createSendToken(loginUser._id, req, 200, res);
   } catch (err) {
     return next(new AppError(err.message, 403));
   }
