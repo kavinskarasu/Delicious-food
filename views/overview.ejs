@@ -100,7 +100,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <i class="fas fa-bars text-light"></i>
+          <i class="fas fa-bars text-light order"></i>
         </button>
 
         <!-- Collapsible wrapper -->
@@ -195,12 +195,14 @@
               <!-- <a href= "/api/v1/users/cart/">Add to cart</a> -->
               <% if(user){ %>
               <button class="btn btn-block btn-primary" onclick="AddToCart('<%=prodects[i]._id%>','<%=user%>')">Add to cart</button>
+             
               <div class="quantity buttons_added">
                 <input type="button" value="-"  onclick="minus('<%=prodects[i]._id%>')"class="minus "><input type="number"  id="i<%=prodects[i]._id%>" step="1" min="1" max="" name="quantity" value="0" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input  onclick="plus('<%=prodects[i]._id%>')" type="button" value="+" class="plus">
               </div>
         <% } %>
         <% if(!user){ %>
           <button class="btn btn-block btn-primary" onclick="login()">Add to cart</button>
+          
           <div class="quantity buttons_added">
             <input type="button" value="-"  onclick="login()"class="minus "><input type="number"  id="i<%=prodects[i]._id%>" step="1" min="1" max="" name="quantity" value="0" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input  onclick="login()" type="button" value="+" class="plus">
           </div>
@@ -307,6 +309,8 @@ axios.patch(`/api/v1/users/cart/${id}/${parseInt(document.querySelector(`#i${id}
          alert("please login to add to cart")
        }
 
+
+       
     </script>
   
   </body>

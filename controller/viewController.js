@@ -8,6 +8,7 @@ const crypto = require("crypto");
 exports.overview = async (req, res) => {
   const prodects = await prodect.find();
   const user = req.user;
+
   res.status(200).render("overview", {
     prodects,
     user,

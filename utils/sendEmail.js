@@ -13,8 +13,8 @@ module.exports = class Email {
     return nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.email,
-        pass: process.env.password,
+        user: process.env.GMAIL,
+        pass: process.env.GMAIL_PASS,
       },
     });
   }
