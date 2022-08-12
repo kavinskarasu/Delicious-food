@@ -9,6 +9,7 @@ exports.cartItem = async (req, res, next) => {
     const User = req.user;
     const prodect = mongoose.Types.ObjectId(req.params.id);
     let x = 10;
+
     // await user.findByIdAndUpdate(
     //   { _id: User._id },
     //   { $push: { cart: { $each:  } } }
@@ -76,22 +77,43 @@ exports.quanity = async (req, res, next) => {
     const foodPrice = await prodectName.price;
     const foodImage = await prodectName.image;
     const quanity = req.params.quanity;
-    const a = await user.updateOne(
-      { _id: User._id },
-      {
-        $set: {
-          "cart.$[elemX].price": quanity * foodPrice,
-          "cart.$[elemX].quantity": quanity,
-        },
-      },
-      {
-        arrayFilters: [
-          {
-            "elemX.name": foodName,
+
+    let obj = User.cart.find((data) => data.name === prodectName.name);
+    console.log(obj);
+    if (!obj) {
+      await user.updateOne(
+        { _id: User._id },
+        {
+          $addToSet: {
+            cart: {
+              _id: prodect,
+              name: foodName,
+              image: foodImage,
+              quanity: quanity,
+              price: foodPrice * quanity,
+            },
           },
-        ],
-      }
-    );
+        }
+      );
+    } else {
+      const a = await user.updateOne(
+        { _id: User._id },
+        {
+          $set: {
+            "cart.$[elemX].price": quanity * foodPrice,
+            "cart.$[elemX].quantity": quanity,
+          },
+        },
+        {
+          arrayFilters: [
+            {
+              "elemX.name": foodName,
+            },
+          ],
+        }
+      );
+    }
+
     await User.save({ validateBeforeSave: false });
     const UserCart = User.cart;
     User.total = 0;
